@@ -1,0 +1,26 @@
+name: Validate Skill
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out full repository history
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Validate skill structure and public content
+        run: python3 scripts/validate_skill.py
+
+      - name: Run public-release privacy preflight
+        run: python3 scripts/preflight_audit.py --repo . --ci --release-ready --public --json
