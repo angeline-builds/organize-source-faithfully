@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI 资料保真整理与审校"
+  short_description: "完整整理多份资料，保留来源、覆盖状态、冲突与回退路径"
+  default_prompt: "使用 $organize-source-faithfully，完整整理这批资料并给出来源对应和覆盖报告。"
